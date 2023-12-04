@@ -1,12 +1,17 @@
 import React from "react";
 import Stack from "react-bootstrap/Stack";
-function Display() {
+function Display(props) {
+  const {flagData}=props;
   return (
     <Stack gap={3}>
       <div className="p-2">
-        <h1></h1>
-        <h3></h3>
-        <h2></h2>
+        {/* <div>
+          <ul>
+            {flagData.map((click, index) => (
+              <li key={index}>{click}</li>
+            ))}
+          </ul>
+        </div> */}
       </div>
     </Stack>
   );

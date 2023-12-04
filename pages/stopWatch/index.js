@@ -5,51 +5,70 @@ import Display from "./display";
 
 function StopWatch() {
   const [start, setStart] = useState(false);
-  const [stopwatch, setStopWatch] = useState(false);
+  const [stop, setStop] = useState(false);
   const [sec, setSec] = useState(0);
   const [timerString, setTimerString] = useState("");
+  const [flaggedTimes, setFlaggedTimes] = useState([]);
 
   useEffect(() => {
     let timer = null;
-    if (start && !stopwatch) {
+    if (start && !stop) {
       timer = setInterval(() => {
         setSec((prevSec) => prevSec + 1);
       }, 10);
-    } else if (stopwatch) {
+    } else if (stop) {
       clearInterval(timer);
     }
     return () => {
       clearInterval(timer);
     };
-  }, [start, stopwatch]);
+  }, [start, stop]);
 
   useEffect(() => {
-    const date = new Date(0);
-    date.setSeconds(sec);
-    setTimerString(date.toISOString().slice(11, 19));
+    const minutes = Math.floor((sec % 360000) / 6000);
+    const seconds = Math.floor((sec % 6000) / 100);
+    const milliseconds = sec % 100;
+
+    const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds
+      .toString()
+      .padStart(2, "0")}.${milliseconds.toString().padStart(2, "0")}`;
+
+    setTimerString(formattedTime);
   }, [sec]);
 
   const handleStart = () => {
-    setStopWatch(false);
+    setStop(false);
     setStart(true);
   };
 
-  const handleStopWatch = () => {
+  const handleStop = () => {
     setStart((prevStart) => !prevStart);
-    setStopWatch((prevStopwatch) => !prevStopwatch);
+    setStop((prevstop) => !prevstop);
   };
 
   const handleReset = () => {
     setSec(0);
     setStart(false);
-    setStopWatch(false);
+    setStop(false);
+    setFlaggedTimes([]);
+  };
+
+  const handleFlag = () => {
+    setFlaggedTimes((prevTimes) => [...prevTimes, timerString]);
   };
 
   return (
     <Container style={{ marginTop: "120px" }}>
       <Row>
         <Col>
-          <h1>Display time.....</h1>
+          <div>
+            <h2>Flagged Times:</h2>
+            <ul>
+              {flaggedTimes.map((time, index) => (
+                <li key={index}>{time}</li>
+              ))}
+            </ul>
+          </div>
           <Display />
         </Col>
         <Col style={{ marginTop: "150px" }}>
@@ -60,8 +79,11 @@ function StopWatch() {
               </span>
             </div>
             <div>
-              <Button variant="warning" type="submit" onClick={handleStopWatch}>
-                Stopwatch
+              <Button variant="dark" onClick={handleFlag}>
+                Flag
+              </Button>{" "}
+              <Button variant="secondary" type="submit" onClick={handleStop}>
+                Stop
               </Button>{" "}
               <Button variant="danger" type="submit" onClick={handleReset}>
                 Reset
