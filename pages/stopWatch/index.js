@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 
-import Display from "./display";
+// import Display from "./display";
 
 function StopWatch() {
   const [start, setStart] = useState(false);
@@ -61,7 +61,7 @@ function StopWatch() {
     <Container style={{ marginTop: "120px" }}>
       <Row>
         <Col>
-          <div>
+          <div >
             <h2>Flagged Times:</h2>
             <ul>
               {flaggedTimes.map((time, index) => (
@@ -69,11 +69,11 @@ function StopWatch() {
               ))}
             </ul>
           </div>
-          <Display />
+          {/* <Display /> */}
         </Col>
         <Col style={{ marginTop: "150px" }}>
           <center>
-            <div>
+            <div >
               <span style={{ fontSize: "50px" }} className="digit" id="mil">
                 {timerString}
               </span>
@@ -82,11 +82,11 @@ function StopWatch() {
               <Button variant="dark" onClick={handleFlag}>
                 Flag
               </Button>{" "}
-              <Button variant="secondary" type="submit" onClick={handleStop}>
-                Stop
-              </Button>{" "}
               <Button variant="danger" type="submit" onClick={handleReset}>
                 Reset
+              </Button>{" "}
+              <Button variant="secondary" type="submit" onClick={handleStop}>
+                Stop
               </Button>{" "}
               <Button variant="success" type="submit" onClick={handleStart}>
                 Start
