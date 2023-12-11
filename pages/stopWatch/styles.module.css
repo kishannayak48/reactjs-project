@@ -1,0 +1,7 @@
+.h2{
+    color: royalblue;
+    /* text-shadow: 2cap; */
+    font-style: oblique;
+    flex-grow: initial;
+    padding: 20px;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-
+import styles from "./styles.module.css";
 // import Display from "./display";
 
 function StopWatch() {
@@ -61,8 +61,8 @@ function StopWatch() {
     <Container style={{ marginTop: "120px" }}>
       <Row>
         <Col>
-          <div >
-            <h2>Flagged Times:</h2>
+          <div>
+            <h2 className={styles.h2}>Flagged Times:</h2>
             <ul>
               {flaggedTimes.map((time, index) => (
                 <li key={index}>{time}</li>
@@ -73,7 +73,7 @@ function StopWatch() {
         </Col>
         <Col style={{ marginTop: "150px" }}>
           <center>
-            <div >
+            <div>
               <span style={{ fontSize: "50px" }} className="digit" id="mil">
                 {timerString}
               </span>
