@@ -1,4 +1,4 @@
-// import '@/styles/globals.css'
+import '@/styles/globals.css'
 {
   /* The following line can be included in your src/index.js or App.js file */
 }
