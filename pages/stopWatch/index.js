@@ -79,17 +79,17 @@ function StopWatch() {
               </span>
             </div>
             <div>
-              <Button variant="dark" onClick={handleFlag}>
-                Flag
+              <Button variant="whait" onClick={handleFlag}>
+                🚩
               </Button>{" "}
-              <Button variant="danger" type="submit" onClick={handleReset}>
-                Reset
+              <Button variant="whait" type="submit" onClick={handleReset}>
+                ☠️
               </Button>{" "}
-              <Button variant="secondary" type="submit" onClick={handleStop}>
+              <Button variant="whait" type="submit" onClick={handleStop}>
                 Stop
               </Button>{" "}
-              <Button variant="success" type="submit" onClick={handleStart}>
-                Start
+              <Button variant="whait" type="submit" onClick={handleStart}>
+                ▶️
               </Button>{" "}
             </div>
           </center>
