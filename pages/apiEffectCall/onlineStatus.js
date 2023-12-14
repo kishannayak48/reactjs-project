@@ -1,31 +1,22 @@
-import React, { useState, useEffect } from "react";
+import useOnlineStatus from "@/hook/useOnlineStatus";
+import React from "react";
 
-function OnlineStatus() {
-  const [isOnline, setIsOnline] = useState(true);
-  useEffect(() => {
-    const handleOnline = () => {
-      setIsOnline(true);
-      console.log("I am connected to the internet");
-    };
-    const handleOffline = () => {
-      setIsOnline(false);
-      console.log("Disconnected....So Happy!!!");
-    };
-
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
-
-    return () => {
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline);
-    };
-  }, []);
+function StatusBar() {
+  const isOnline = useOnlineStatus();
 
   return (
-    <div className="text-black-dark text-3xl">
-      {isOnline ? "you are Online" : "you are offline"}
-    </div>
+    <>
+      <div>
+        {isOnline ? (
+          <h3 className="text-white dark:bg-green-600">✅ Online</h3>
+        ) : (
+          <h3 className="text-white dark:bg-red-600 ">❌offline</h3>
+        )}
+      </div>
+      {/* <div>
+        <button>Save Progress</button>
+      </div> */}
+    </>
   );
 }
-
-export default OnlineStatus;
+export default StatusBar;
